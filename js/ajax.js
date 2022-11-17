@@ -59,7 +59,8 @@ async function filtrarResultSimple(criterio){
     try {
         let recibido = await fetch(url+criterio);
         let json = await recibido.json();
-        cargarTabla({json});
+        let json2 ={json};
+        cargarTabla(json2);
     }
     catch(t){
         console.log(t);
