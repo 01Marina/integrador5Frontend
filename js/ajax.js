@@ -6,6 +6,7 @@ let tbody = document.querySelector("#tbody_students");
 
 let headTable = tbody.innerHTML;
 
+
 getStudents();
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -13,7 +14,56 @@ document.addEventListener("DOMContentLoaded", function(){
     document.querySelector("#btn_insertar").addEventListener('click', function(){
         insertStudent();
     });
+
+    document.querySelector("#btn_filtrar").addEventListener('click', function(){
+        filtrar();
+    });
 });
+
+async function filtrar(){
+    let criterio = identificarFiltro();
+    try {
+        let recibido = await fetch(url+criterio);
+        let json = await recibido.json();
+        cargarTabla(json);
+      }
+      catch(t){
+        console.log(t);
+      }
+}
+
+function identificarFiltro(){
+    let criterio = "";
+    let select_filter = document.querySelector("#from-select");
+    var selectedOption = this.options[select_filter.selectedIndex];
+    switch (selectedOption.value) {
+        case '2':
+            criterio = "/sortedbyname";
+            break;
+        case '3':
+            let bookNumber = parseInt(document.querySelector("#input_filter_libreta").value);
+            if(bookNumber != null){
+                criterio = "/bookNumber/"+bookNumber;
+            }
+            break;
+        case '4':
+            let genero = document.querySelector('input[name="flexRadiofiltroGenero"]:checked').value;
+            if(genero != ""){
+                criterio = "/gender/"+genero;
+            }
+            break;
+        case '5':
+            let carrera = document.querySelector("#input_filtro_carrera").value;
+            let ciudad = document.querySelector("#input_filtro_ciudad").value;
+            if(carrera != "" & ciudad!= ""){
+                criterio = "/"+carrera+"/"+ciudad;
+            }
+            break;
+        default:
+            break;
+    }
+    return criterio;
+}
 
 async function insertStudent() {
     let data = {
@@ -25,7 +75,6 @@ async function insertStudent() {
 		        "libreta_universitaria": parseInt(document.querySelector("#input_libreta").value),
 		        "matriculas": []
 	        };
-            console.log(data);
     try {
       await fetch(url+ "/insert", {
         "method": "POST",
@@ -45,7 +94,6 @@ async function getStudents(){
     try {
       let recibido = await fetch(url);
       let json = await recibido.json();
-      console.log(json);
       cargarTabla(json);
     }
     catch(t){

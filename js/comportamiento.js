@@ -1,7 +1,6 @@
 "use strict"
 
 let select_filter = document.querySelector("#from-select");
-let form_nombre = document.querySelector("#form_filtro_nombre");
 let form_libreta = document.querySelector("#form_filtro_libreta");
 let form_genero = document.querySelector("#form_filtro_genero");
 let form_carrera_ciudad = document.querySelector("#form_filtro_carrera_ciudad");
@@ -16,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 ocultarforms();
                 break;
             case '2':
-                mostrar(form_nombre);
+                ocultarforms();
                 break;
             case '3':
                 mostrar(form_libreta);
@@ -34,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 function mostrar(form_mostrar){
-    form_nombre.classList.add("hiden_cont");
     form_libreta.classList.add("hiden_cont");
     form_genero.classList.add("hiden_cont");
     form_carrera_ciudad.classList.add("hiden_cont");
@@ -43,7 +41,6 @@ function mostrar(form_mostrar){
 }
 
 function ocultarforms(){
-    form_nombre.classList.add("hiden_cont");
     form_libreta.classList.add("hiden_cont");
     form_genero.classList.add("hiden_cont");
     form_carrera_ciudad.classList.add("hiden_cont");

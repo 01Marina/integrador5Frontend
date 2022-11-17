@@ -71,34 +71,28 @@
                     <h4>Filtrar</h4>
                     <select id="from-select" class="form-select" aria-label="Default select example">
                         <option value=1 selected>Todos</option>
-                        <option value="2">Nombre</option>
+                        <option value="2">Alfabéticamente</option>
                         <option value="3">N° libreta universitaria</option>
                         <option value="4">Género femenino</option>
                         <option value="5">Carrera y ciudad</option>
                     </select>
                 </div>
                 <div class="div_display">
-                    <form class="hiden_cont" id="form_filtro_nombre">
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Escribe un nombre:</label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                    </form>
                     <form class="hiden_cont" id="form_filtro_libreta">
                         <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Escribe un número de libreta universitaria:</label>
-                          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                          <label for="input_filter_libreta" class="form-label">Escribe un número de libreta universitaria:</label>
+                          <input type="number" class="form-control" id="input_filter_libreta" aria-describedby="emailHelp">
                         </div>
                     </form>
                     <form class="hiden_cont" id="form_filtro_genero">
                         <div class="div_display">
                             <label for="" class="form-label">Sexo</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <input class="form-check-input" type="radio" name="flexRadiofiltroGenero" id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">femenino</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <input class="form-check-input" type="radio" name="flexRadiofiltroGenero" id="flexRadioDefault2" checked>
                                 <label class="form-check-label" for="flexRadioDefault2">masculino</label>
                             </div>
                         </div>
