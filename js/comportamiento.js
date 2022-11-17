@@ -1,5 +1,5 @@
 "use strict"
-
+/* 
 let select_filter = document.querySelector("#from-select");
 let form_libreta = document.querySelector("#form_filtro_libreta");
 let form_genero = document.querySelector("#form_filtro_genero");
@@ -45,4 +45,4 @@ function ocultarforms(){
     form_genero.classList.add("hiden_cont");
     form_carrera_ciudad.classList.add("hiden_cont");
     div_btn_filtrar.classList.add("hiden_cont");
-}
+}*/
