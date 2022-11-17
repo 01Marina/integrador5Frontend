@@ -1,0 +1,21 @@
+.div_display{
+    display: flex;
+}
+
+.hiden_cont{
+    display: none;
+}
+
+.margen{
+    margin: 20px;
+}
+
+.margen_input{
+    margin: 5px;
+    width: auto;
+}
+
+.form_insert_student{
+    width: 50%;
+    margin: auto;
+}

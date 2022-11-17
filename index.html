@@ -4,10 +4,137 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <title>Document</title>
-    <script defer src="js/app.js"></script>
+    <script defer src="js/ajax.js"></script>
+    <script defer src="js/comportamiento.js"></script>
 </head>
 <body>
-    <p id="titulo"></p>
+    <p>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Estudiantes
+        </a>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Carreras
+        </a>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Matrículas
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <form class="form_insert_student" id="form_insert_student">
+                <legend>Insertar un estudiante</legend>
+                <div class="div_display">
+                    <div class="margen_input mb-3">
+                        <label for="input_nombre" class="form-label">Nombre *</label>
+                        <input type="text" class="form-control" id="input_nombre" aria-describedby="emailHelp">
+                    </div>
+                    <div class="margen_input mb-3">
+                        <label for="input_edad" class="form-label">Edad *</label>
+                        <input type="number" class="form-control" id="input_edad">
+                    </div>
+                </div>
+                <div class="div_display">
+                    <label for="" class="form-label">Sexo *</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadiogenero" id="input_genero_f" value="f">
+                        <label class="form-check-label" for="radio_genero_f">femenino</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadiogenero" id="radio_genero_m" value="m" checked>
+                        <label class="form-check-label" for="radio_genero_m">masculino</label>
+                    </div>
+                </div>
+                <div class="div_display">
+                    <div class="margen_input mb-3">
+                        <label for="input_dni" class="form-label">DNI *</label>
+                        <input type="number" class="form-control" id="input_dni">
+                    </div>
+                    <div class="margen_input mb-3">
+                        <label for="input_ciudad" class="form-label">Localidad de procedencia *</label>
+                        <input type="text" class="form-control" id="input_ciudad">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="input_libreta" class="form-label">N° libreta universitaria *</label>
+                    <input type="number" class="form-control" id="input_libreta">
+                </div>
+              </form>
+            <button class="btn btn-primary" id="btn_insertar">Insertar</button>
+
+            <h2>Lista de alumnos</h2>
+
+            <div class="margen">
+                <div class="div_display">
+                    <h4>Filtrar</h4>
+                    <select id="from-select" class="form-select" aria-label="Default select example">
+                        <option value=1 selected>Todos</option>
+                        <option value="2">Nombre</option>
+                        <option value="3">N° libreta universitaria</option>
+                        <option value="4">Género femenino</option>
+                        <option value="5">Carrera y ciudad</option>
+                    </select>
+                </div>
+                <div class="div_display">
+                    <form class="hiden_cont" id="form_filtro_nombre">
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Escribe un nombre:</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                    </form>
+                    <form class="hiden_cont" id="form_filtro_libreta">
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Escribe un número de libreta universitaria:</label>
+                          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                    </form>
+                    <form class="hiden_cont" id="form_filtro_genero">
+                        <div class="div_display">
+                            <label for="" class="form-label">Sexo</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">femenino</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">masculino</label>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="hiden_cont" id="form_filtro_carrera_ciudad">
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Escribe una carrera:</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Escribe una ciudad:</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                    </form>
+                    <div class="hiden_cont" id="div_btn_filtrar">
+                        <button class="btn btn-primary" id="btn_filtrar">filtrar</button>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table margen">
+                <thead>
+                  <tr>
+                    <td>Nombre</td>
+                    <td>Edad</td>
+                    <td>sexo</td>
+                    <td>DNI</td>
+                    <td>Localidad de procedencia</td>
+                    <td>N° libreta universitaria</td>
+                  </tr>
+                </thead>
+                <tbody class="margen" id="tbody_students"></tbody>
+                <tfoot></tfoot>
+              </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>
