@@ -34,6 +34,13 @@ document.addEventListener("DOMContentLoaded", function(){
                 let alfabeticamente = "/sortedbyname";
                 filtrar(alfabeticamente);
                 break;
+            case '3':
+                let bookNumber = parseInt(document.querySelector("#input_filter_libreta").value);
+                if(bookNumber != null){
+                    criterio = "/bookNumber/"+bookNumber;
+                    filtrarResultSimple(criterio);
+                }
+                break;
             default:
                 break;
         }
@@ -46,28 +53,32 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 async function filtrar(criterio){
-    console.log(criterio);
     try {
         let recibido = await fetch(url+"/bookNumber/"+2345);
         let json = await recibido.json();
         cargarTabla(json);
-      }
-      catch(t){
-        console.log(t);
-      }
     }
+    catch(t){
+        console.log(t);
+    }
+}
+
+async function filtrarResultSimple(criterio){
+    try {
+        let recibido = await fetch(url+criterio);
+        let json = await recibido.json();
+        cargarTabla({json});
+    }
+    catch(t){
+        console.log(t);
+    }
+}
 
 function identificarFiltro(){
     let criterio = "";
     let select_filter = document.querySelector("#from-select");
     var selectedOption = select_filter.options[select_filter.selectedIndex];
     switch (selectedOption.value) {
-        case '3':
-            let bookNumber = parseInt(document.querySelector("#input_filter_libreta").value);
-            if(bookNumber != null){
-                criterio = "/bookNumber/"+bookNumber;
-            }
-            break;
         case '4':
             let genero = document.querySelector('input[name="flexRadiofiltroGenero"]:checked').value;
             if(genero != ""){
