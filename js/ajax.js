@@ -1,7 +1,10 @@
 "use strict"
 
 let url = 'https://integrador5marina2.herokuapp.com/api/students';
-//'https://web-unicen.herokuapp.com/api/groups/028_bedini_caseres/carro'
+
+let tbody = document.querySelector("#tbody_students");
+
+let headTable = tbody.innerHTML;
 
 getStudents();
 
@@ -36,26 +39,57 @@ async function insertStudent() {
     catch (t) {
       console.log(t);
     }
-  }
+}
 
-  async function getStudents(){
+async function getStudents(){
     try {
-      let recibido = await fetch(url);//,{mode: 'no-cors'}
+      let recibido = await fetch(url);
       let json = await recibido.json();
       console.log(json);
-      /*carrito_compras = [];
-      if(json.carro.length > 0){
-        for(let i = 0; i < json.carro.length; i++){
-          let id = json.carro[i]._id;
-          let thing = json.carro[i].thing;
-          carrito_compras.push({id,thing});
-        }
-      }
-      mostrarDatos();*/
-      //console.log("Aca traje los datos realmente: ",carrito_compras);
+      cargarTabla(json);
     }
     catch(t){
       console.log(t);
     }
-  }
+}
+
+function cargarTabla(json){
+    tbody.innerHTML = headTable;
+    for (student of json) {
+        crearFila(student);
+    }
+}
+
+function crearFila(student){
+
+    let row = document.createElement("tr");
+    row.setAttribute("id",student.id_estudiante);
+
+    let nombre = document.createElement("td");
+    nombre.textContent = student.nombre;
+
+    let edad = document.createElement("td");
+    edad.textContent = student.edad;
+
+    let genero = document.createElement("td");
+    genero.textContent = student.genero;
+
+    let dni = document.createElement("td");
+    dni.textContent = student.dni;
+
+    let ciudad_de_residencia = document.createElement("td");
+    ciudad_de_residencia.textContent = student.ciudad_de_residencia;
+
+    let libreta_universitaria = document.createElement("td");
+    libreta_universitaria.textContent = student.libreta_universitaria;
+
+    row.appendChild(nombre);
+    row.appendChild(edad);
+    row.appendChild(genero);
+    row.appendChild(dni);
+    row.appendChild(ciudad_de_residencia);
+    row.appendChild(libreta_universitaria);
+    tbody.appendChild(row);
+}
+
 
