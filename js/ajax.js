@@ -8,6 +8,11 @@ let headTable = tbody.innerHTML;
 
 let select_filter = document.querySelector("#from-select");
 
+let form_libreta = document.querySelector("#form_filtro_libreta");
+let form_genero = document.querySelector("#form_filtro_genero");
+let form_carrera_ciudad = document.querySelector("#form_filtro_carrera_ciudad");
+let div_btn_filtrar = document.querySelector("#div_btn_filtrar");
+
 getStudents();
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -15,11 +20,12 @@ document.addEventListener("DOMContentLoaded", function(){
     document.querySelector("#btn_insertar").addEventListener('click', function(){
         insertStudent();
     });
-
+    
     select_filter.addEventListener('change', function(e){
         var selectedOption = this.options[select_filter.selectedIndex];
-        cambioDeClases(selectedOption);
-        switch (selectedOption.value) {
+        let opcion = selectedOption.value;
+        cambioDeClases(opcion);
+        switch (opcion) {
             case '1':
                 let todos = "";
                 filtrar(todos);
@@ -159,14 +165,10 @@ function crearFila(student){
 
 //comportamiento de ocultar o mostrar criterios de filtrados
 
-let form_libreta = document.querySelector("#form_filtro_libreta");
-let form_genero = document.querySelector("#form_filtro_genero");
-let form_carrera_ciudad = document.querySelector("#form_filtro_carrera_ciudad");
-let div_btn_filtrar = document.querySelector("#div_btn_filtrar");
 
-function cambioDeClases(selectedOption){
-    var selectedOption = selectedOption.options[select_filter.selectedIndex];
-        switch (selectedOption.value) {
+
+function cambioDeClases(opcion){
+        switch (opcion) {
             case '1':
                 ocultarforms();
                 break;
