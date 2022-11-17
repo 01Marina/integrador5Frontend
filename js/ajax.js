@@ -6,6 +6,7 @@ let tbody = document.querySelector("#tbody_students");
 
 let headTable = tbody.innerHTML;
 
+let select_filter = document.querySelector("#from-select");
 
 getStudents();
 
@@ -15,13 +16,29 @@ document.addEventListener("DOMContentLoaded", function(){
         insertStudent();
     });
 
+    select_filter.addEventListener('change', function(e){
+        var selectedOption = this.options[select_filter.selectedIndex];
+        switch (selectedOption.value) {
+            case '1':
+                let todos = "";
+                filtrar(todos);
+                break;
+            case '2':
+                let alfabeticamente = "/sortedbyname";
+                filtrar(alfabeticamente);
+                break;
+            default:
+                break;
+        }
+    });
+
     document.querySelector("#btn_filtrar").addEventListener('click', function(){
-        filtrar();
+        let criterio = identificarFiltro();
+        filtrar(criterio);
     });
 });
 
-async function filtrar(){
-    let criterio = identificarFiltro();
+async function filtrar(criterio){
     try {
         let recibido = await fetch(url+criterio);
         let json = await recibido.json();
@@ -30,16 +47,13 @@ async function filtrar(){
       catch(t){
         console.log(t);
       }
-}
+    }
 
 function identificarFiltro(){
     let criterio = "";
     let select_filter = document.querySelector("#from-select");
     var selectedOption = select_filter.options[select_filter.selectedIndex];
     switch (selectedOption.value) {
-        case '2':
-            criterio = "/sortedbyname";
-            break;
         case '3':
             let bookNumber = parseInt(document.querySelector("#input_filter_libreta").value);
             if(bookNumber != null){
