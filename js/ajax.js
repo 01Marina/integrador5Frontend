@@ -35,7 +35,7 @@ async function filtrar(){
 function identificarFiltro(){
     let criterio = "";
     let select_filter = document.querySelector("#from-select");
-    var selectedOption = this.options[select_filter.selectedIndex];
+    var selectedOption = select_filter.options[select_filter.selectedIndex];
     switch (selectedOption.value) {
         case '2':
             criterio = "/sortedbyname";
