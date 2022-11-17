@@ -60,8 +60,16 @@ async function filtrarResultSimple(criterio){
     try {
         let recibido = await fetch(url+criterio);
         let json = await recibido.json();
-        let json2 ={json};
-        console.log(json2);
+        let json2 ={
+            id_estudiante: json.id_estudiate,
+            nombre: json.nombre,
+            ciudad_de_residencia : json.ciudad_de_residencia,
+            dni: json.dni,
+            edad: json.edad,
+            genero: json.genero,
+            libreta_universitaria: json.libreta_universitaria,
+            matriculas: json.matriculas
+        };
         cargarTabla(json2);
     }
     catch(t){
