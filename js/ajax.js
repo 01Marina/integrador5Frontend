@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 async function filtrar(criterio){
+    console.log(criterio);
     try {
         let recibido = await fetch(url+criterio);
         let json = await recibido.json();
