@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function(){
     document.querySelector("#btn_insertar").addEventListener('click', function(){
         insertStudent();
     });
-    
+
     select_filter.addEventListener('change', function(e){
         var selectedOption = this.options[select_filter.selectedIndex];
         let opcion = selectedOption.value;
