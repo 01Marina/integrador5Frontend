@@ -34,27 +34,19 @@ document.addEventListener("DOMContentLoaded", function(){
                 let alfabeticamente = "/sortedbyname";
                 filtrar(alfabeticamente);
                 break;
-            case '3':
-                let bookNumber = parseInt(document.querySelector("#input_filter_libreta").value);
-                if(bookNumber != null){
-                    criterio = "/bookNumber/"+bookNumber;
-                    filtrarResultSimple(criterio);
-                }
-                break;
             default:
                 break;
         }
     });
 
     document.querySelector("#btn_filtrar").addEventListener('click', function(){
-        let criterio = identificarFiltro();
-        filtrar(criterio);
+        identificarFiltro();
     });
 });
 
 async function filtrar(criterio){
     try {
-        let recibido = await fetch(url+"/bookNumber/"+2345);
+        let recibido = await fetch(url+criterio);
         let json = await recibido.json();
         cargarTabla(json);
     }
@@ -79,11 +71,19 @@ function identificarFiltro(){
     let select_filter = document.querySelector("#from-select");
     var selectedOption = select_filter.options[select_filter.selectedIndex];
     switch (selectedOption.value) {
+        case '3':
+            let bookNumber = parseInt(document.querySelector("#input_filter_libreta").value);
+            if(bookNumber != null){
+                criterio = "/bookNumber/"+bookNumber;
+                filtrarResultSimple(criterio);
+            }
+            break;
         case '4':
             let genero = document.querySelector('input[name="flexRadiofiltroGenero"]:checked').value;
             if(genero != ""){
                 criterio = "/gender/"+genero;
             }
+            filtrar(criterio);
             break;
         case '5':
             let carrera = document.querySelector("#input_filtro_carrera").value;
@@ -91,6 +91,7 @@ function identificarFiltro(){
             if(carrera != "" & ciudad!= ""){
                 criterio = "/"+carrera+"/"+ciudad;
             }
+            filtrar(criterio);
             break;
         default:
             break;
