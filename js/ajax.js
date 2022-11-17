@@ -55,8 +55,9 @@ async function getStudents(){
 
 function cargarTabla(json){
     tbody.innerHTML = headTable;
-    for (student of json) {
-        crearFila(student);
+
+    for(let i = 0; i < json.length; i++){
+        crearFila(json[i]);
     }
 }
 
